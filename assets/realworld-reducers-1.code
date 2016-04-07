@@ -1,0 +1,12 @@
+import {GET_AUTH_FULFILLED} from '../actions/actionTypes';
+
+const initialState = false;
+
+export default function auth(state = initialState, action) {
+  switch (action.type) {
+    case GET_AUTH_FULFILLED:
+      return true;
+    default:
+      return state;
+  }
+}

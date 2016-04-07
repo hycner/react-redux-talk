@@ -1,0 +1,29 @@
+import {
+  SUB_ACCOUNT_CHANGE,
+  GET_DOCUMENTS_FULFILLED,
+  GET_DOCUMENTS_BY_USER_FULFILLED,
+  SHOW_NEW_DOCUMENTS
+} from '../actions/actionTypes';
+import {uniq} from 'lodash';
+
+const initialState = {
+  all: [],
+  new: []
+};
+
+export default function documents(state = initialState, action) {
+  switch (action.type) {
+    case GET_DOCUMENTS_FULFILLED:
+    case GET_DOCUMENTS_BY_USER_FULFILLED:
+      const newDocs = uniq([...action.payload.documents, ...state.new], 'id');
+      if (!state.all.length) {
+	      return {new: [], all: newDocs};
+      }
+      return {...state, new: newDocs};
+    case SHOW_NEW_DOCUMENTS:
+      const allDocs = uniq([...state.new, ...state.all], 'id');
+      return {new: [], all: allDocs};
+    default:
+      return state;
+  }
+}

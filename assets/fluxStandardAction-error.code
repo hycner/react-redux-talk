@@ -1,0 +1,5 @@
+{
+  type: 'ADD_TODO',
+  payload: new Error(),
+  error: true
+}

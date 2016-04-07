@@ -1,0 +1,10 @@
+function doSomethingAsync () {
+  return (dispatch) => {
+    dispatch({ type: SOMETHING_PENDING });
+
+    return requestSomething().then(
+      (result) =>  dispatch({ type: SOMETHING_FULFILLED, result }),
+      (error) =>  dispatch({ type: SOMETHING_REJECTED, error })
+    );
+  };
+}

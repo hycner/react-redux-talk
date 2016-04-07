@@ -1,0 +1,10 @@
+function incrementAsync () {
+  return (dispatch, getState) => {
+    const { counter } = getState();
+      if (counter > 5) {
+        return;
+      }
+
+      dispatch(increment());
+  };
+}

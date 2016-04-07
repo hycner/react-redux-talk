@@ -1,0 +1,6 @@
+function doSomethingAsync () {
+  return {
+    type: SOMETHING,
+    promise: requestSomething()
+  };
+}

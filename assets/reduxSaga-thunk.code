@@ -1,0 +1,8 @@
+function loadTodos () {
+  return dispatch => {
+    dispatch({ type: 'FETCHING_TODOS' });
+    fetch('/todos').then(todos => {
+      dispatch({ type: 'FETCHED_TODOS', payload: todos });
+    });
+  }
+}

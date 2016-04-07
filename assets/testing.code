@@ -1,0 +1,28 @@
+import {expect} from 'chai';
+import counter from '../reducers/counter';
+
+it('should increment the state by 1', () => {
+  const action = {
+    type: 'INCREMENT'
+  };
+  const initialState = {
+    count: 2
+  };
+  const nextState = {
+    count: 3
+  };
+
+  const output = counter(initialState, action);
+
+  expect(output).to.eql(nextState);
+});
+
+it('should not mutate the previous state', () => {
+  const action = {
+    type: 'INCREMENT'
+  };
+
+  const output = counter(initialState, action);
+
+  expect(output).to.not.equal(initialState);
+});

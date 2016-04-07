@@ -1,0 +1,6 @@
+{
+  type: 'ADD_TODO',
+  payload: {
+    text: 'Do something.'
+  }
+}

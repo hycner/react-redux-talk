@@ -1,0 +1,34 @@
+import {GET_AUTH_PENDING, GET_AUTH_FULFILLED, GET_AUTH_REJECTED} from './actionTypes';
+import apiClient from '../lib/api-client';
+
+function getAuthPending() {
+  return {
+    type: GET_AUTH_PENDING
+  }
+}
+
+function getAuthFulfilled(payload) {
+  return {
+    type: GET_AUTH_FULFILLED,
+    payload
+  }
+}
+
+function getAuthRejected(error) {
+  return {
+    type: GET_AUTH_REJECTED,
+    error: true,
+    payload: error
+  };
+}
+
+export function getAuth() {
+  return (dispatch, getState) => {
+    dispatch(getAuthPending());
+    return apiClient.get(`api/auth/userId=${getState().userId}`)
+      .then(
+      	payload => dispatch(getAuthFulfilled(payload)),
+      	error => dispatch(getAuthRejected(error))
+      );
+  };
+}

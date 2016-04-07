@@ -1,0 +1,19 @@
+import {
+  GET_AUTH_PENDING,
+  GET_AUTH_RESOLVED,
+  GET_AUTH_REJECTED
+} from './actionTypes';
+import apiClient from '../lib/api-client';
+
+export function getAuth() {
+  return {
+    types: [
+      GET_AUTH_PENDING,
+      GET_AUTH_RESOLVED,
+      GET_AUTH_REJECTED
+    ],
+    payload: {
+      promise: apiClient.get('/auth/')
+    }
+  };
+}
